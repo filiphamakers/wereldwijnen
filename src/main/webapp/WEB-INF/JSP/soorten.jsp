@@ -10,7 +10,7 @@
 	<v:menu/>
 	<h1>Soorten uit ${land.naam}</h1>
 	<ul>
-		<c:forEach items='${land.soorten}' var='soort'>
+		<c:forEach items='${soorten}' var='soort'>
 			<li>${soort.naam}</li>
 		</c:forEach>
 	</ul>
