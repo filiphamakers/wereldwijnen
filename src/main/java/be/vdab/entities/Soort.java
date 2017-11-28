@@ -12,6 +12,9 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "soorten")
 public class Soort {
+	// NAMED QUERIES
+	public static final String FIND_BY_LAND = "Soort.findByLand";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

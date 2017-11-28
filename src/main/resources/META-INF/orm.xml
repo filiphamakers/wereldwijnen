@@ -10,4 +10,11 @@
 			order by l.naam, l.id
 		</query>
 	</named-query>
+	<named-query name='Soort.findByLand'>
+		<query>
+			select s from Soort s
+			where s.land.id = :landid
+			order by s.naam
+		</query>
+	</named-query>
 </entity-mappings> 

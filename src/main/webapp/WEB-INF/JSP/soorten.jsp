@@ -4,10 +4,15 @@
 <!doctype html>
 <html>
 <head>
-<meta charset='UTF-8'>
 <title></title>
 </head>
 <body>
-	<v:menu />
+	<v:menu/>
+	<h1>Soorten uit ${land.naam}</h1>
+	<ul>
+		<c:forEach items='${land.soorten}' var='soort'>
+			<li>${soort.naam}</li>
+		</c:forEach>
+	</ul>
 </body>
 </html>

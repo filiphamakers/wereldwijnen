@@ -1,12 +1,12 @@
-<%@tag language="java" pageEncoding="ISO-8859-1"%>
+<%@tag language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav>
 	<ul>
 		<c:forEach items='${landen}' var='land'>
-			<c:url value='' var='soortenPerLandUrl'>
-				<c:param name='land' value='${land.naam}' />
+			<c:url value='/soorten.htm' var='soortenUrl'>
+				<c:param name='landid' value='${land.id}' />
 			</c:url>
-			<li><a href='${soortenPerLandUrl}'><img alt='${land.naam}'
+			<li><a href='${soortenUrl}'><img alt='${land.naam}'
 					src='img/landen/${land.id}.png'></a></li>
 		</c:forEach>
 	</ul>
