@@ -3,6 +3,7 @@ package be.vdab.entities;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,11 +21,9 @@ public class Wijn {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne
-	@JoinColumn(name = "soortid")
 	@Version
 	private long versie;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "soortid")
 	private Soort soort;
 	private int jaar;
@@ -54,6 +53,10 @@ public class Wijn {
 
 	public long getInBestelling() {
 		return inBestelling;
+	}
+	
+	public void incrementInBestelling(long aantal) {
+		inBestelling += aantal;
 	}
 
 }

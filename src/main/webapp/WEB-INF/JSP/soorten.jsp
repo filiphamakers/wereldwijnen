@@ -22,9 +22,14 @@
 		<h1>Wijnen uit ${soort.naam}</h1>
 		<ul>
 			<c:forEach items='${wijnen}' var='wijn'>
-				<li>${wijn.jaar}
-					<c:forEach begin='0' end='${wijn.beoordeling-1}'><span>&#9733</span></c:forEach>
-				</li>
+				<c:url value='/bestellen.htm' var='bestellenUrl'>
+					<c:param name='wijnid' value='${wijn.id}' />
+				</c:url>
+				<li><a href='${bestellenUrl}'> ${wijn.jaar} <c:forEach
+							begin='0' end='${wijn.beoordeling-1}'>
+							<span>&#9733</span>
+						</c:forEach>
+				</a></li>
 			</c:forEach>
 		</ul>
 	</c:if>

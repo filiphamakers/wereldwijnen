@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -21,7 +22,7 @@ public class Land {
 	@Version
 	private long versie;
 	private String naam;
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "landid")
 	private Set<Soort> soorten;
 	
