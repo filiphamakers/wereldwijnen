@@ -17,4 +17,11 @@
 			order by s.naam
 		</query>
 	</named-query>
+	<named-query name='Wijn.findBySoort'>
+		<query>
+			select w from Wijn w
+			where w.soort.id = :soortid
+			order by w.jaar
+		</query>
+	</named-query>
 </entity-mappings> 
