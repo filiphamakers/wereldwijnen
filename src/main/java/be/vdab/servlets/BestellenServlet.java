@@ -3,12 +3,15 @@ package be.vdab.servlets;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import be.vdab.services.WijnService;
 import be.vdab.utils.StringUtils;
@@ -21,7 +24,6 @@ public class BestellenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/bestellen.jsp";
 	private final WijnService wijnService = new WijnService();
-	private String redirectUrl;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +44,7 @@ public class BestellenServlet extends HttpServlet {
 			if (StringUtils.isPositiveLong(aantalString)) {
 				long aantal = Long.parseLong(aantalString);
 				request.setAttribute("aantal", aantal);
-				incrementInBestelling(wijnid, aantal);
+				addToWinkelmandje(request, wijnid, aantal);
 				response.sendRedirect(response.encodeRedirectURL(request.getContextPath()));
 			} else {
 				fouten.put("aantal", "Gelieve minimaal 1 artikel te bestellen");
@@ -50,9 +52,26 @@ public class BestellenServlet extends HttpServlet {
 				request.getRequestDispatcher(VIEW).forward(request, response);
 			}
 		} else {
-			response.sendError(500);
+			response.sendError(404);
 		}
 
+	}
+
+	private void addToWinkelmandje(HttpServletRequest request, long wijnid, long aantal) {
+		HttpSession session = request.getSession();
+		@SuppressWarnings("unchecked")
+		SortedMap<Long, Long> winkelmandje = (SortedMap<Long, Long>) session
+				.getAttribute(WinkelmandjeServlet.WINKELMANDJE);
+		if (winkelmandje == null) {
+			winkelmandje = new TreeMap<>();
+		}
+		if (!winkelmandje.containsKey(wijnid)) {
+			winkelmandje.put(wijnid, aantal);
+		} else {
+			long nieuwAantal = winkelmandje.get(wijnid) + aantal;
+			winkelmandje.put(wijnid, nieuwAantal);
+		}
+		session.setAttribute(WinkelmandjeServlet.WINKELMANDJE, winkelmandje);
 	}
 
 	private void setAttributeWijn(HttpServletRequest request) {
@@ -61,9 +80,5 @@ public class BestellenServlet extends HttpServlet {
 			long wijnid = Long.parseLong(wijnidString);
 			wijnService.read(wijnid).ifPresent(wijn -> request.setAttribute("wijn", wijn));
 		}
-	}
-
-	private void incrementInBestelling(long wijnid, long aantal) {
-		wijnService.incrementInBestelling(wijnid, aantal);
 	}
 }

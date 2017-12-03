@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: rgb(255, 223, 128);
+}
+
+#menu {
+	background-image: url(../img/intro.jpg);
+	/* zoeken naar manier om het met absolute url te doen werken*/
+	text-align: center;
+	padding-bottom: 1.5em;
+}
+
+#menu h1 {
+	color: rgb(255, 223, 128);
+	margin-bottom: 1.5em;
+}
+
+#menu ul {
+	margin-bottom: 1em;
+}
+
+ul.lijst-horizontaal li {
+	display: inline-block;
+}
+
+ul {
+	margin: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+ul li a, ul li a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+#mandje-tabel td {
+	border-color: white;
+}
+
+#mandje-tabel thead td {
+	text-align: center;
+}
+
+#mandje-tabel tbody td {
+	text-align: right;
+}
+
+#mandje-tabel tbody tr:nth-child(odd) {
+	background-color: rgb(214, 214, 194);
+}
+
+#mandje-tabel thead, #mandje-tabel tbody tr:nth-child(even) {
+	background-color: rgb(194, 194, 163)
+}
+
+#mandje-tabel tbody tr:last-child {
+	font-weight: bold;
+	background-color: white;
+}
+
+form label, form input {
+	display: block;
+}
+
+form span {
+	color: red;
+	margin-left: 1em;
+	display: inline-block;
+}

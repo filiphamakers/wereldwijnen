@@ -10,6 +10,8 @@
      	<class>be.vdab.entities.Land</class>
      	<class>be.vdab.entities.Soort</class>
      	<class>be.vdab.entities.Wijn</class>
+     	<class>be.vdab.entities.Bestelbon</class>
+     	<class>be.vdab.valueobjects.Bestelbonlijn</class>
 		<properties>
 			<property name='hibernate.show_sql' value='true' />
 			<property name='hibernate.format_sql' value='true' />

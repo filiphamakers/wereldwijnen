@@ -1,9 +1,10 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@taglib prefix="v" uri="http://vdab.be/tags"%>
 <%@taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt'%>
 <!doctype html>
 <html lang='nl'>
-<head></head>
+<v:head/>
 <body>
 	<h1>Wijn toevoegen aan mandje</h1>
 	<table>
@@ -22,9 +23,9 @@
 			</tr>
 			<tr>
 				<td>Beoordeling</td>
-<%-- 				<td><c:forEach begin='0' end='${wijn.beoordeling-1}'> --%>
-<!-- 						<span>&#9733;</span> -->
-<%-- 					</c:forEach></td> --%>
+				<td><c:forEach begin='0' end='${wijn.beoordeling-1}'>
+						<span>&#9733;</span>
+					</c:forEach></td>
 			</tr>
 			<tr>
 				<td>Prijs</td>
@@ -32,11 +33,19 @@
 			</tr>
 		</tbody>
 	</table>
-	<form method='post'>
+	<form method='post' id='toevoegform'>
 		<label>Aantal flessen<span>${fouten.aantal}</span>
 			<input type='number' name='aantal' value='${aantal}' required autofocus></label>
-<%-- 		<input hidden='true' name='wijnid' value='${wijn.id}'>  --%>
-		<input type='submit' value='Toevoegen'>
+		<input type='submit' value='Toevoegen' id='toevoegknop'>
 	</form>
+	<script>
+		document.getElementById('toevoegform').onsubmit = function() {
+			if (!navigator.cookieEnabled) {
+				alert("Dit werkt enkel als cookies aanstaan");
+				return false;
+			}
+			document.getElementById('toevoegknop').disabled = true;
+		};
+	</script>
 </body>
 </html>

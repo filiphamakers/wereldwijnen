@@ -14,10 +14,10 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "wijnen")
-public class Wijn {
-	//NAMED QUERIES
+public class Wijn implements Comparable<Wijn> {
+	// NAMED QUERIES
 	public static final String FIND_BY_SOORT = "Wijn.findBySoort";
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -54,9 +54,14 @@ public class Wijn {
 	public long getInBestelling() {
 		return inBestelling;
 	}
-	
+
 	public void incrementInBestelling(long aantal) {
 		inBestelling += aantal;
 	}
 
+	@Override
+	public int compareTo(Wijn wijn) {
+		return jaar - wijn.jaar;
+	}
+	
 }

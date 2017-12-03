@@ -3,10 +3,7 @@
 <%@taglib prefix="v" uri="http://vdab.be/tags"%>
 <!doctype html>
 <html>
-<head>
-<meta charset='UTF-8'>
-<title></title>
-</head>
+<v:head/>
 <body>
 	<v:menu />
 </body>

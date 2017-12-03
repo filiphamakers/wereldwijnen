@@ -3,13 +3,11 @@
 <%@taglib prefix="v" uri="http://vdab.be/tags"%>
 <!doctype html>
 <html>
-<head>
-<title></title>
-</head>
+<v:head/>
 <body>
 	<v:menu />
 	<h1>Soorten uit ${land.naam}</h1>
-	<ul>
+	<ul class='lijst-horizontaal'>
 		<c:forEach items='${soorten}' var='soort'>
 			<c:url value='/soorten.htm' var='wijnenUrl'>
 				<c:param value='${soort.id}' name='soortid' />
