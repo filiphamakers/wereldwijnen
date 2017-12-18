@@ -34,5 +34,9 @@
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-lang3-3.6.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-lang3-3.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-lang3-3.6-sources.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
